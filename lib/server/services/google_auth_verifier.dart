@@ -3,6 +3,7 @@
 
 library dev_appserver.lib.server.services.google_auth_verifier;
 
+import 'package:googleapis/oauth2/v2.dart';
 import 'package:dev_appserver/common/auth/auth_token.dart';
 
 class GoogleAuthVerifier {

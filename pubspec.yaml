@@ -1,7 +1,7 @@
 name: 'dev_appserver'
 version: 0.0.1
 description: A web server built using the shelf package.
-#author: borysn <email@example.com>
+author: borysn xborysn@gmail.com
 #homepage: https://www.example.com
 
 environment:
@@ -10,5 +10,5 @@ environment:
 dependencies:
   args: '>=0.10.0 <0.14.0'
   shelf: '>=0.6.0 <0.7.0'
-  rpc: '^0.5.6+1'
-  googleapis_auth: '^0.2.3+4'
+  rpc: '>=0.5.6'
+  firebase3: 
