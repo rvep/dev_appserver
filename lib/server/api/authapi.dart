@@ -12,7 +12,7 @@ class AuthApi {
 
   @ApiMethod(path: 'google')
   AuthTokenVerification verifyGoogleAuth(AuthToken authToken) {
-
+    
   }
 
 }
