@@ -3,13 +3,20 @@
 
 library dev_appserver.lib.server.services.google_auth_verifier;
 
-import 'package:firebase3/firebase.dart' as firebase;
+import 'package:dart_jwt/dart_jwt.dart';
 import 'package:dev_appserver/common/auth/auth_token.dart';
+import 'package:dev_appserver/common/auth/auth_token_verification.dart';
 
 class GoogleAuthVerifier {
 
-  bool verify(AuthToken authToken) {
-    firebase.auth().currentUser.getToken();
+  AuthTokenVerification verify(AuthToken authToken) {
+    AuthTokenVerification verification = new AuthTokenVerification(false);
+
+    JsonWebToken jwt = new JsonWebToken.decode(authToken.getTokenId());
+
+    Set<ConstraintViolation> violations;
+
+    return verification;
   }
 
 }
