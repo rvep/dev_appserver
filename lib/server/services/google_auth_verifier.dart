@@ -1,7 +1,7 @@
 // Copyright (c) 2016, borysn. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-library dev_appserver.lib.server.services.google_auth_verifier;
+library server.services.google_auth_verifier;
 
 import 'package:dart_jwt/dart_jwt.dart';
 import 'package:dev_appserver/common/auth/auth_token.dart';
@@ -13,10 +13,15 @@ class GoogleAuthVerifier {
     AuthTokenVerification verification = new AuthTokenVerification(false);
 
     JsonWebToken jwt = new JsonWebToken.decode(authToken.getTokenId());
+    JwtValidationContext jvc = new JwtValidationContext.withSharedSecret("AIzaSyC1aHWikGh18FBBwuVbSGuUu1lQvWCOUnY");
 
-    Set<ConstraintViolation> violations;
-
-    return verification;
+    try {
+      Set<ConstraintViolation> violations = jwt.validate(jvc);
+      verification.setIsVerified(true);
+    } catch (violation) {
+      // claims may have been tampered with
+      return verification;
+    }
   }
 
 }
