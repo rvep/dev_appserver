@@ -1,7 +1,7 @@
 // Copyright (c) 2016, borysn. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-library dev_appserver.lib.common.auth.auth_token;
+library common.auth.auth_token;
 
 class AuthToken {
   String _tokenId;
