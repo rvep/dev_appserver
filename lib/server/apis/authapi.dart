@@ -16,9 +16,9 @@ class AuthApi {
     this._glAuthVerifier = new GoogleAuthVerifier();
   }
 
-  @ApiMethod(method: 'GET', path: 'google')
-  AuthTokenVerification verifyGoogleAuth(AuthToken authToken) {
-    return _glAuthVerifier.verify(authToken);
+  @ApiMethod(method: 'GET', path: 'google/{token}')
+  AuthTokenVerification verifyGoogleAuth(String token) {
+    return _glAuthVerifier.verify(new AuthToken(token));
   }
 
 }
