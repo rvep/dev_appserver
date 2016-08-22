@@ -10,5 +10,6 @@ environment:
 dependencies:
   args: '>=0.10.0 <0.14.0'
   shelf: '>=0.6.0 <0.7.0'
+  shelf_rpc: '>=0.0.3+2'
   rpc: '>=0.5.6+1'
   dart_jwt: '>=0.5.1'
