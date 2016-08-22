@@ -10,11 +10,15 @@ import 'package:dev_appserver/server/services/google_auth_verifier.dart';
 
 @ApiClass(version: 'v1')
 class AuthApi {
-  GoogleAuthVerifier glAuthVerifier;
+  GoogleAuthVerifier _glAuthVerifier;
+
+  AuthApi() {
+    this._glAuthVerifier = new GoogleAuthVerifier();
+  }
 
   @ApiMethod(method: 'GET', path: 'google')
   AuthTokenVerification verifyGoogleAuth(AuthToken authToken) {
-    return glAuthVerifier.verify(authToken);
+    return _glAuthVerifier.verify(authToken);
   }
 
 }
