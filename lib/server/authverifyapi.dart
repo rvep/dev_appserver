@@ -27,7 +27,7 @@ class AuthVerifyApi {
   AuthVerifyResponse verifyGoogleAuth(AuthVerifyRequest request) {
     AuthVerifyResponse verification = new AuthVerifyResponse();
 
-    JsonWebToken jwt = new JsonWebToken.decode(request.token);
+   /* JsonWebToken jwt = new JsonWebToken.decode(request.token);
     JwtValidationContext jvc = new JwtValidationContext.withSharedSecret("AIzaSyC1aHWikGh18FBBwuVbSGuUu1lQvWCOUnY");
 
     try {
@@ -37,7 +37,9 @@ class AuthVerifyApi {
     } catch (violation) {
       // claims may have been tampered with
       return verification;
-    }
+    }*/
+
+    return verification;
   }
 
 }
