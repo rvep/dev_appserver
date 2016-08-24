@@ -8,10 +8,8 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 
 dependencies:
-  _discoveryapis_commons:
-  browser:
-  crypto:
+  logging:
   logging_handlers:
-  http:
   rpc:
+  _discoveryapis_commons:
   dart_jwt:
