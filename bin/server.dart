@@ -3,7 +3,6 @@
 
 library server;
 
-import 'dart:async';
 import 'dart:io';
 import 'package:logging/logging.dart';
 import 'package:rpc/rpc.dart';
@@ -20,26 +19,7 @@ main() async {
   _apiServer.addApi(new AuthApi());
   HttpServer server =
   await HttpServer.bind(InternetAddress.ANY_IP_V4, 8088);
-  server.listen(requestHandler);
+  server.listen(_apiServer.httpRequestHandler);
   print('Server listening on http://${server.address.host}:'
     '${server.port}');
-}
-
-Future requestHandler(HttpRequest request) async {
-  if (request.uri.path.startsWith('/authApi')) {
-    // Handle the API request.
-    var apiResponse;
-    try {
-      var apiRequest = new HttpApiRequest.fromHttpRequest(request);
-      apiResponse =
-      await _apiServer.handleHttpApiRequest(apiRequest);
-    } catch (error, stack) {
-      var exception =
-      error is Error ? new Exception(error.toString()) : error;
-      apiResponse = new HttpApiResponse.error(
-        HttpStatus.INTERNAL_SERVER_ERROR, exception.toString(),
-        exception, stack);
-    }
-    return sendApiResponse(apiResponse, request.response);
-  }
 }
