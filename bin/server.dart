@@ -11,7 +11,7 @@ import 'package:rpc/rpc.dart';
 
 import 'package:dev_appserver/server/apis/authverifyapi.dart';
 
-const String _API_PREFIX = '/api';
+const String _API_PREFIX = '/apis';
 final ApiServer _apiServer = new ApiServer(apiPrefix: _API_PREFIX, prettyPrint: true);
 
 main() async {
