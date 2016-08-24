@@ -9,7 +9,7 @@ import 'package:logging/logging.dart';
 import 'package:logging_handlers/server_logging_handlers.dart';
 import 'package:rpc/rpc.dart';
 
-import 'package:dev_appserver/server/apis/authverifyapi.dart';
+import 'package:dev_appserver/server/authverifyapi.dart';
 
 const String _API_PREFIX = '/apis';
 final ApiServer _apiServer = new ApiServer(apiPrefix: _API_PREFIX, prettyPrint: true);
