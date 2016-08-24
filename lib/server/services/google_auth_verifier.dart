@@ -4,20 +4,21 @@
 library server.services.google_auth_verifier;
 
 import 'package:dart_jwt/dart_jwt.dart';
-import 'package:dev_appserver/common/auth/auth_token.dart';
-import 'package:dev_appserver/common/auth/auth_token_verification.dart';
+import 'package:dev_appserver/common/auth/auth_verify_request.dart';
+import 'package:dev_appserver/common/auth/auth_verify_response.dart';
 
 class GoogleAuthVerifier {
 
-  AuthTokenVerification verify(AuthToken authToken) {
-    AuthTokenVerification verification = new AuthTokenVerification(false);
+  AuthVerifyResponse verify(AuthVerifyRequest authToken) {
+    AuthVerifyResponse verification = new AuthVerifyResponse();
 
-    JsonWebToken jwt = new JsonWebToken.decode(authToken.getTokenId());
+    JsonWebToken jwt = new JsonWebToken.decode(authToken.token);
     JwtValidationContext jvc = new JwtValidationContext.withSharedSecret("AIzaSyC1aHWikGh18FBBwuVbSGuUu1lQvWCOUnY");
 
     try {
       Set<ConstraintViolation> violations = jwt.validate(jvc);
-      verification.setIsVerified(true);
+      verification.isVerified = true;
+      return verification;
     } catch (violation) {
       // claims may have been tampered with
       return verification;

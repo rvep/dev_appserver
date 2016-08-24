@@ -4,22 +4,27 @@
 library server;
 
 import 'dart:io';
-import 'package:logging/logging.dart';
-import 'package:rpc/rpc.dart';
-import 'package:dev_appserver/server/apis/authapi.dart';
 
-final ApiServer _apiServer = new ApiServer(prettyPrint: true);
+import 'package:logging/logging.dart';
+import 'package:logging_handlers/server_logging_handlers.dart';
+import 'package:rpc/rpc.dart';
+
+import 'package:dev_appserver/server/apis/authverifyapi.dart';
+
+const String _API_PREFIX = '/api';
+final ApiServer _apiServer = new ApiServer(apiPrefix: _API_PREFIX, prettyPrint: true);
 
 main() async {
-  // Add a bit of logging...
-  Logger.root..level = Level.INFO
-    ..onRecord.listen(print);
+  // Add a simple log handler to log information to a server side file.
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen(new SyncFileLoggingHandler('server.log'));
+  if (stdout.hasTerminal) {
+    Logger.root.onRecord.listen(new LogPrintHandler());
+  }
 
-  // Set up a server serving the pirate API.
-  _apiServer.addApi(new AuthApi());
-  HttpServer server =
-  await HttpServer.bind(InternetAddress.ANY_IP_V4, 8088);
+  _apiServer.addApi(new AuthVerifyApi());
+  _apiServer.enableDiscoveryApi();
+
+  HttpServer server = await HttpServer.bind(InternetAddress.ANY_IP_V4, 8088);
   server.listen(_apiServer.httpRequestHandler);
-  print('Server listening on http://${server.address.host}:'
-    '${server.port}');
 }

@@ -9,6 +9,9 @@ environment:
 
 dependencies:
   _discoveryapis_commons:
+  browser:
+  crypto:
   logging_handlers:
+  http:
   rpc:
   dart_jwt:
