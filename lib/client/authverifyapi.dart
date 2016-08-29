@@ -8,7 +8,8 @@ import 'dart:convert' as convert;
 
 import 'package:_discoveryapis_commons/_discoveryapis_commons.dart' as commons;
 import 'package:http/http.dart' as http;
-import 'package:dev_appserver/server/authverifyapi.dart';
+import 'package:dev_appserver/common/auth/auth_verify_request.dart';
+import 'package:dev_appserver/common/auth/auth_verify_response.dart';
 export 'package:_discoveryapis_commons/_discoveryapis_commons.dart' show
     ApiRequestError, DetailedApiRequestError;
 
